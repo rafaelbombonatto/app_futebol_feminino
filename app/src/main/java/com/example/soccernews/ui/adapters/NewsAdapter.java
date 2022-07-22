@@ -38,14 +38,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        final Context context = holder.itemView.getContext();
+        Context context = holder.itemView.getContext();
 
         News news = this.news.get(position);
         holder.binding.tvTitle.setText(news.title);
         holder.binding.tvDescription.setText(news.description);
         holder.binding.tvDate.setText(news.date);
-        int favoriteColor = news.favorite ? R.color.primary_500 : R.color.white;
-        holder.binding.ivFavorite.setColorFilter(context.getResources().getColor(favoriteColor));
 
         Picasso.get().load(news.image).fit().into(holder.binding.ivThumbnail);
         // Abrir link
@@ -73,6 +71,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             notifyItemChanged(position);
         });
 
+        int favoriteColor = news.favorite ? R.color.primary_500 : R.color.white;
+        holder.binding.ivFavorite.setColorFilter(context.getResources().getColor(favoriteColor));
 
 
     }
